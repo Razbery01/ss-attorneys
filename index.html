@@ -815,7 +815,12 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.08)}
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
   .hero{padding:120px 1.5rem 60px}
-  .sec,.svc-detail{padding:60px 1.5rem}
+  .sec,.svc-detail{padding:48px 1.5rem}
+  .svc-detail-inner{gap:20px!important}
+  .svc-detail-img{height:220px}
+  .svc-detail p{margin-bottom:8px}
+  .svc-detail ul{margin-bottom:12px}
+  .svc-detail .btn{margin-top:4px}
   .svc-grid{grid-template-columns:1fr}
   .team-grid{grid-template-columns:1fr;gap:16px}
   .footer-main{grid-template-columns:1fr;gap:24px}
@@ -825,6 +830,16 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.08)}
   .footer-bottom{flex-direction:column;gap:8px;text-align:center}
   .banner-inner{flex-direction:column;text-align:center}
   .cform{padding:24px}
+}
+
+/* ── TIGHTER TESTIMONIALS SECTION ── */
+/* The "Be Our Next Success Story" section content is short — cap the vertical padding so it doesn't float in whitespace */
+.sec.sec-dark2{padding:56px 0}
+.sec.sec-dark2 .sec-title{margin-bottom:8px}
+.sec.sec-dark2 .divider{margin:16px auto!important}
+.sec.sec-dark2 p{margin-bottom:1.25rem!important}
+@media(max-width:768px){
+  .sec.sec-dark2{padding:40px 1.5rem}
 }
 
 
