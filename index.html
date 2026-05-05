@@ -223,125 +223,51 @@
   --off-white:#f5f5f5;
   --white:#ffffff;
   --accent:#222222;
-  --marble-url: url("images/logo-marble.png");
+  /* Clean SVG marble veining — no logo, soft contrast, premium feel */
+  --stone-texture: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><defs><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='3' seed='7'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.55  0 0 0 0 0.55  0 0 0 1.4 -0.55'/></filter></defs><rect width='100%25' height='100%25' fill='%23f6f5f3'/><rect width='100%25' height='100%25' filter='url(%23m)' opacity='0.55'/></svg>");
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Montserrat',sans-serif;color:var(--dark);background:var(--white);overflow-x:hidden}
+body{font-family:'Montserrat',sans-serif;color:var(--dark);background:#f8f7f5;overflow-x:hidden}
 
-/* ── MARBLE TEXTURE ACCENTS ── */
-/* Marble veining throughout light sections — premium, classic feel that builds the brand's visual identity */
+/* ── CLEAN STONE TEXTURE ── */
+/* Soft marble/stone veining on light sections only — no logo, premium and minimal.
+   Built from inline SVG fractalNoise so it loads instantly and has no harsh patterns. */
 .sec:not(.sec-dark):not(.sec-dark2){
   position:relative;
-  background-color:#fafafa;
+  background-color:#f8f7f5;
+  background-image: var(--stone-texture);
+  background-size: 800px 800px;
+  background-position: center;
+  background-repeat: repeat;
 }
 .sec:not(.sec-dark):not(.sec-dark2)::before{
   content:"";
   position:absolute;
   inset:0;
-  background-image: var(--marble-url);
-  background-size: 700px auto;
-  background-position: center;
-  background-repeat: repeat;
-  opacity: 0.16;
+  background: rgba(255,255,255,0.55);
   pointer-events:none;
   z-index:0;
-  mix-blend-mode: multiply;
 }
 .sec:not(.sec-dark):not(.sec-dark2) > *{ position:relative; z-index:1; }
 
-/* Body itself gets a faint marble wash so even unframed areas feel cohesive */
-body{
-  background-image: var(--marble-url);
-  background-size: 900px auto;
-  background-attachment: fixed;
-  background-position: center;
+/* Service detail rows: same calm stone, alternating background tone */
+.svc-detail{
+  background-color:#fcfbf9;
+  background-image: var(--stone-texture);
+  background-size: 800px 800px;
+  background-blend-mode: multiply;
 }
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background: rgba(255,255,255,0.88);
-  pointer-events:none;
-  z-index:-1;
-}
-
-/* Team cards get a delicate marble wash visible at the corners */
-.team-card{
-  position:relative;
-  background-image: var(--marble-url);
-  background-size: 500px auto;
-  background-position: center;
-}
-.team-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: rgba(255,255,255,0.82);
-  pointer-events:none;
-  z-index:0;
-  border-radius: inherit;
-}
-.team-card > *{ position:relative; z-index:1; }
-
-/* Service detail alternating rows: visible marble streak on the "alt" side */
 .svc-detail.alt{
-  background-image: var(--marble-url);
-  background-size: 900px auto;
-  background-position: right center;
-  background-repeat: no-repeat;
-  background-color: #f3f3f3;
-  background-blend-mode: multiply;
-}
-.svc-detail:not(.alt){
-  background-color: #fff;
-  background-image: var(--marble-url);
-  background-size: 800px auto;
-  background-position: left center;
-  background-repeat: no-repeat;
-  background-blend-mode: multiply;
+  background-color:#f4f3f0;
 }
 
-/* Pillars get visible marble band */
+/* Cards stay clean white — readability over decoration */
+.team-card,
+.svc-card,
+.office-card,
 .pillar{
-  background-image: var(--marble-url), linear-gradient(#fff,#fff);
-  background-size: 280px auto, auto;
-  background-position: center;
-  background-blend-mode: multiply;
-}
-
-/* Office cards get marble edge */
-.office-card{
-  background-image: var(--marble-url);
-  background-size: 400px auto;
-  background-position: top right;
-  background-repeat: no-repeat;
-  background-color: #fff;
-  background-blend-mode: multiply;
-}
-
-/* Service cards (the grid of practice areas) — marble corner veining */
-.svc-card{
-  background-image: var(--marble-url);
-  background-size: 350px auto;
-  background-position: top right;
-  background-repeat: no-repeat;
-  background-blend-mode: multiply;
-}
-
-/* About section: prominent firm-logo "stamp" — single hero placement for brand recall */
-.about-logo-stamp{
-  width: 240px;
-  height: 240px;
-  margin: 0 auto 1.5rem;
-  display:block;
-  border-radius: 4px;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-  object-fit: cover;
-}
-@media(max-width:768px){
-  .about-logo-stamp{ width:170px; height:170px; }
+  background:#ffffff;
 }
 h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
 img{display:block;max-width:100%}
@@ -1149,7 +1075,6 @@ section[id],div[id]{scroll-margin-top:80px}
         <div class="about-badge"><strong>10+</strong><span>Years of<br>Legal Excellence</span></div>
       </div>
       <div>
-        <img src="images/logo-marble.png" alt="Shaheel Singh Attorneys Inc — Firm Logo" class="about-logo-stamp" loading="lazy" decoding="async" width="220" height="220"/>
         <div class="sec-lbl">About the Firm</div>
         <h2 class="sec-title">Where Experience<br>Meets <em>Dedication</em></h2>
         <div class="divider"></div>
