@@ -271,14 +271,28 @@ body{
   background-color: rgba(255,255,255,0.35);
 }
 
-/* Service detail rows: alternating soft tints, no own texture (body marble shows through) */
+/* Service detail rows: alternating — clean white on odd, visible marble on every 2nd (.alt) */
 .svc-detail{
   position:relative;
-  background-color: rgba(255,255,255,0.45);
+  background-color: #ffffff;
 }
 .svc-detail.alt{
-  background-color: rgba(244,243,240,0.55);
+  position:relative;
+  background-color: #f6f5f3;
+  background-image: var(--stone-texture);
+  background-size: 1600px 1600px;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
+.svc-detail.alt::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,0.30);
+  pointer-events:none;
+  z-index:0;
+}
+.svc-detail.alt > *{ position:relative; z-index:1; }
 
 /* Cards stay clean white — readability over decoration */
 .team-card,
