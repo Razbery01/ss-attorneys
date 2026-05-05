@@ -230,63 +230,84 @@ html{scroll-behavior:smooth}
 body{font-family:'Montserrat',sans-serif;color:var(--dark);background:var(--white);overflow-x:hidden}
 
 /* ── MARBLE TEXTURE ACCENTS ── */
-/* Subtle marble streaks on light sections — keeps the premium feel without fighting content readability */
-.sec:not(.sec-dark){
+/* Marble veining throughout light sections — premium, classic feel that builds the brand's visual identity */
+.sec:not(.sec-dark):not(.sec-dark2){
   position:relative;
   background-color:#fafafa;
 }
-.sec:not(.sec-dark)::before{
+.sec:not(.sec-dark):not(.sec-dark2)::before{
   content:"";
   position:absolute;
   inset:0;
   background-image: var(--marble-url);
-  background-size: 900px auto;
+  background-size: 700px auto;
   background-position: center;
   background-repeat: repeat;
-  opacity: 0.06;
+  opacity: 0.16;
   pointer-events:none;
   z-index:0;
   mix-blend-mode: multiply;
 }
-.sec:not(.sec-dark) > *{ position:relative; z-index:1; }
+.sec:not(.sec-dark):not(.sec-dark2) > *{ position:relative; z-index:1; }
 
-/* Team cards get a delicate marble wash */
+/* Body itself gets a faint marble wash so even unframed areas feel cohesive */
+body{
+  background-image: var(--marble-url);
+  background-size: 900px auto;
+  background-attachment: fixed;
+  background-position: center;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: rgba(255,255,255,0.88);
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* Team cards get a delicate marble wash visible at the corners */
 .team-card{
   position:relative;
   background-image: var(--marble-url);
-  background-size: 600px auto;
+  background-size: 500px auto;
   background-position: center;
 }
 .team-card::after{
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(255,255,255,0.88);
+  background: rgba(255,255,255,0.82);
   pointer-events:none;
   z-index:0;
   border-radius: inherit;
 }
 .team-card > *{ position:relative; z-index:1; }
 
-/* Service detail alternating rows: marble wash on the "alt" side */
+/* Service detail alternating rows: visible marble streak on the "alt" side */
 .svc-detail.alt{
   background-image: var(--marble-url);
-  background-size: 1200px auto;
+  background-size: 900px auto;
   background-position: right center;
   background-repeat: no-repeat;
-  background-color: #f7f7f7;
-  background-blend-mode: luminosity;
+  background-color: #f3f3f3;
+  background-blend-mode: multiply;
 }
 .svc-detail:not(.alt){
   background-color: #fff;
+  background-image: var(--marble-url);
+  background-size: 800px auto;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
 }
 
-/* Pillars (Legal Assistance / Two Offices) get a marble band */
+/* Pillars get visible marble band */
 .pillar{
   background-image: var(--marble-url), linear-gradient(#fff,#fff);
-  background-size: 300px auto, auto;
+  background-size: 280px auto, auto;
   background-position: center;
-  background-blend-mode: luminosity;
+  background-blend-mode: multiply;
 }
 
 /* Office cards get marble edge */
@@ -296,37 +317,22 @@ body{font-family:'Montserrat',sans-serif;color:var(--dark);background:var(--whit
   background-position: top right;
   background-repeat: no-repeat;
   background-color: #fff;
-  background-blend-mode: luminosity;
+  background-blend-mode: multiply;
 }
 
-/* ── BIG LOGO PRESENCE ── */
-/* Watermark logo behind dark testimonial / CTA sections — strengthens brand recall over time */
-.sec.sec-dark, .sec.sec-dark2{
-  position:relative;
-  overflow:hidden;
-}
-.sec.sec-dark::before, .sec.sec-dark2::before{
-  content:"";
-  position:absolute;
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  width: min(700px, 90vw);
-  height: min(700px, 90vw);
+/* Service cards (the grid of practice areas) — marble corner veining */
+.svc-card{
   background-image: var(--marble-url);
-  background-size: contain;
+  background-size: 350px auto;
+  background-position: top right;
   background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.05;
-  filter: invert(1);
-  pointer-events:none;
-  z-index:0;
+  background-blend-mode: multiply;
 }
-.sec.sec-dark > *, .sec.sec-dark2 > *{ position:relative; z-index:1; }
 
-/* About section: feature a prominent firm-logo "stamp" alongside the about-img */
+/* About section: prominent firm-logo "stamp" — single hero placement for brand recall */
 .about-logo-stamp{
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   margin: 0 auto 1.5rem;
   display:block;
   border-radius: 4px;
@@ -335,7 +341,7 @@ body{font-family:'Montserrat',sans-serif;color:var(--dark);background:var(--whit
   object-fit: cover;
 }
 @media(max-width:768px){
-  .about-logo-stamp{ width:160px; height:160px; }
+  .about-logo-stamp{ width:170px; height:170px; }
 }
 h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
 img{display:block;max-width:100%}
@@ -402,25 +408,6 @@ a{text-decoration:none;color:inherit}
   padding:140px 0 80px;
   background:#0d2b6b;
   overflow:hidden;
-}
-/* Faded firm-logo watermark behind hero — strong brand association without fighting the headline */
-.hero::after{
-  content:"";
-  position:absolute;
-  top:50%; right:-80px;
-  transform:translateY(-50%);
-  width: 600px; height: 600px;
-  background-image: var(--marble-url);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.07;
-  filter: invert(1) brightness(2);
-  pointer-events:none;
-  z-index:1;
-}
-@media(max-width:1100px){
-  .hero::after{ right:-180px; width:480px; height:480px; opacity:0.05; }
 }
 .hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 2.5rem;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center}
 .hero-form-panel{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);padding:32px;backdrop-filter:blur(4px)}
@@ -895,14 +882,77 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.08)}
   .cform{padding:24px}
 }
 
-/* ── TIGHTER TESTIMONIALS SECTION ── */
-/* The "Be Our Next Success Story" section content is short — cap the vertical padding so it doesn't float in whitespace */
-.sec.sec-dark2{padding:56px 0}
+/* ── TESTIMONIALS SECTION ── */
+.sec.sec-dark2{padding:80px 0}
 .sec.sec-dark2 .sec-title{margin-bottom:8px}
 .sec.sec-dark2 .divider{margin:16px auto!important}
-.sec.sec-dark2 p{margin-bottom:1.25rem!important}
-@media(max-width:768px){
-  .sec.sec-dark2{padding:40px 1.5rem}
+
+.testi-grid{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 2.5rem;
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+}
+.testi-card{
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 28px 26px 24px;
+  border-radius: 4px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  transition: background .25s, border-color .25s, transform .25s;
+}
+.testi-card:hover{
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-3px);
+}
+.testi-quote{
+  color: rgba(255,255,255,0.18);
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.testi-body{
+  color: rgba(255,255,255,0.78)!important;
+  font-size: .85rem!important;
+  line-height: 1.75!important;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 18px!important;
+  flex-grow:1;
+}
+.testi-meta{
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 14px;
+  margin-top: auto;
+}
+.testi-meta strong{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size: 1.1rem;
+  font-weight:600;
+  color:#fff;
+  letter-spacing:.04em;
+}
+.testi-meta span{
+  display:block;
+  font-size: .68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+}
+
+@media(max-width:1000px){
+  .testi-grid{ grid-template-columns:repeat(2, 1fr); }
+}
+@media(max-width:640px){
+  .testi-grid{ grid-template-columns:1fr; padding:0 1.5rem; gap:18px; }
+  .sec.sec-dark2{padding:60px 0}
+  .testi-card{ padding: 24px 22px 20px; }
 }
 
 
@@ -1001,7 +1051,7 @@ section[id],div[id]{scroll-margin-top:80px}
       <li><a href="#offices">Offices</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="tel:+27636855702" id="SS-CTA">Call Now</a></li>
+      <li><a href="tel:+27609290199" id="SS-CTA">Call Now</a></li>
     </ul>
     <button id="SS-HB" type="button" aria-label="Open menu" aria-expanded="false">
       <span></span>
@@ -1020,7 +1070,7 @@ section[id],div[id]{scroll-margin-top:80px}
   <a href="#offices">Offices</a>
   <a href="#faq">FAQ</a>
   <a href="#contact">Contact</a>
-  <a href="tel:+27636855702" id="SS-MOB-CTA">📞 Call Now</a>
+  <a href="tel:+27609290199" id="SS-MOB-CTA">📞 Call Now</a>
 </div>
 
 <!-- HERO -->
@@ -1037,7 +1087,7 @@ section[id],div[id]{scroll-margin-top:80px}
       </div>
       <div class="hero-stats">
         <div><div class="stat-num">10+</div><div class="stat-lbl">Years Experience</div></div>
-        <div><div class="stat-num">10</div><div class="stat-lbl">Practice Areas</div></div>
+        <div><div class="stat-num">12+</div><div class="stat-lbl">Practice Areas</div></div>
         <div><div class="stat-num">2</div><div class="stat-lbl">Offices Nationwide</div></div>
       </div>
     </div>
@@ -1110,7 +1160,7 @@ section[id],div[id]{scroll-margin-top:80px}
         </div>
         <div class="pillars">
           <div class="pillar"><i class="fas fa-shield-halved"></i><div><strong>Trusted</strong><span>Reputation built on results</span></div></div>
-          <div class="pillar"><i class="fas fa-scale-balanced"></i><div><strong>Legal Assistance</strong><span>Across 10+ practice areas</span></div></div>
+          <div class="pillar"><i class="fas fa-scale-balanced"></i><div><strong>Legal Assistance</strong><span>Across 12+ practice areas</span></div></div>
           <div class="pillar"><i class="fas fa-handshake"></i><div><strong>Client-Centred</strong><span>Your interests always first</span></div></div>
           <div class="pillar"><i class="fas fa-location-dot"></i><div><strong>Two Offices</strong><span>KZN &amp; Johannesburg</span></div></div>
         </div>
@@ -1249,6 +1299,7 @@ section[id],div[id]{scroll-margin-top:80px}
         <li>Shareholders' and partnership agreements</li>
         <li>Mergers and acquisitions</li>
         <li>Commercial dispute resolution</li>
+        <li>Tender appeals and reviews</li>
         <li class="li-more">…and more — speak to us about your specific matter</li>
 
       </ul>
@@ -1449,8 +1500,8 @@ section[id],div[id]{scroll-margin-top:80px}
           <p style="font-size:.78rem;color:#555;line-height:1.7;margin-bottom:10px;font-weight:300">Shaheel Singh is the founding director of the firm with over 10 years of legal experience across civil litigation, RAF claims, family law, criminal law, and commercial matters. Admitted as an attorney of the High Court of South Africa, Shaheel is known for his tenacious advocacy and personalised approach to every client matter.</p>
           <div class="team-contact">
             <a href="mailto:info@ssinghlaw.co.za">info@ssinghlaw.co.za</a>
-            <a href="tel:+27636855702"><i class="fas fa-phone"></i>+27 63 685 5702</a>
-            <a href="https://wa.me/27636855702" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+            <a href="tel:+27609290199"><i class="fas fa-phone"></i>+27 60 929 0199</a>
+            <a href="https://wa.me/27609290199" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp</a>
           </div>
         </div>
       </div>
@@ -1464,7 +1515,7 @@ section[id],div[id]{scroll-margin-top:80px}
           <p style="font-size:.78rem;color:#555;line-height:1.7;margin-bottom:10px;font-weight:300">Joel Durugiah is a Consultant at Shaheel Singh Attorneys Incorporated, bringing extensive experience in civil litigation, labour law, and commercial matters. Joel's commitment to thorough preparation and client-focused representation makes him a valued contributor to the firm's practice.</p>
           <div class="team-contact">
             <a href="mailto:info@ssinghlaw.co.za">info@ssinghlaw.co.za</a>
-            <a href="tel:+27636855702"><i class="fas fa-phone"></i>+27 63 685 5702</a>
+            <a href="tel:+27609290199"><i class="fas fa-phone"></i>+27 60 929 0199</a>
           </div>
         </div>
       </div>
@@ -1478,7 +1529,7 @@ section[id],div[id]{scroll-margin-top:80px}
           <p style="font-size:.78rem;color:#555;line-height:1.7;margin-bottom:10px;font-weight:300">Divesh Rughoo is a dedicated attorney at the firm, combining strong legal knowledge with a client-focused approach. He contributes meaningfully across the firm's diverse practice areas with enthusiasm and precision.</p>
           <div class="team-contact">
             <a href="mailto:info@ssinghlaw.co.za">info@ssinghlaw.co.za</a>
-            <a href="tel:+27636855702"><i class="fas fa-phone"></i>+27 63 685 5702</a>
+            <a href="tel:+27609290199"><i class="fas fa-phone"></i>+27 60 929 0199</a>
           </div>
         </div>
       </div>
@@ -1492,7 +1543,7 @@ section[id],div[id]{scroll-margin-top:80px}
           <p style="font-size:.78rem;color:#555;line-height:1.7;margin-bottom:10px;font-weight:300">Seyisha Lutchman is the Office Manager at Shaheel Singh Attorneys Incorporated, responsible for overseeing the firm's daily operations, administration, client liaison, and human resources functions. She plays a key role in ensuring efficient office management and maintaining strong communication between clients and the firm's legal professionals.</p>
           <div class="team-contact">
             <a href="mailto:info@ssinghlaw.co.za">info@ssinghlaw.co.za</a>
-            <a href="tel:+27636855702"><i class="fas fa-phone"></i>+27 63 685 5702</a>
+            <a href="tel:+27609290199"><i class="fas fa-phone"></i>+27 60 929 0199</a>
           </div>
         </div>
       </div>
@@ -1513,9 +1564,9 @@ section[id],div[id]{scroll-margin-top:80px}
         <span class="office-tag">Main Office — KwaZulu-Natal</span>
         <p>18 Montrose Park Boulevard<br>170 Peter Brown Drive<br>Victoria Country Club Estate<br>Pietermaritzburg</p>
         <div class="office-contact">
-          <a href="tel:+27636855702"><i class="fas fa-phone"></i>+27 63 685 5702</a>
+          <a href="tel:+27609290199"><i class="fas fa-phone"></i>+27 60 929 0199</a>
           <a href="mailto:info@ssinghlaw.co.za">info@ssinghlaw.co.za</a>
-          <a href="https://wa.me/27636855702" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp Us</a>
+          <a href="https://wa.me/27609290199" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp Us</a>
           <a href="#"><i class="fas fa-clock"></i>Mon–Fri: 08:00–17:00 | Sat: By Appointment</a>
         </div>
       </div>
@@ -1524,9 +1575,9 @@ section[id],div[id]{scroll-margin-top:80px}
         <span class="office-tag">Branch Office — Gauteng</span>
         <p>377 Rivonia Boulevard<br>Rivonia<br>Johannesburg<br>2128</p>
         <div class="office-contact">
-          <a href="tel:+27636855702"><i class="fas fa-phone"></i>+27 63 685 5702</a>
+          <a href="tel:+27609290199"><i class="fas fa-phone"></i>+27 60 929 0199</a>
           <a href="mailto:info@ssinghlaw.co.za">info@ssinghlaw.co.za</a>
-          <a href="https://wa.me/27636855702" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp Us</a>
+          <a href="https://wa.me/27609290199" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp Us</a>
           <a href="#"><i class="fas fa-clock"></i>Mon–Fri: 08:00–17:00 | Sat: By Appointment</a>
         </div>
       </div>
@@ -1534,14 +1585,73 @@ section[id],div[id]{scroll-margin-top:80px}
   </div>
 </section>
 
-<!-- TESTIMONIALS PLACEHOLDER -->
-<section class="sec sec-dark2">
-  <div class="wrap" style="text-align:center">
-    <div class="sec-lbl light" style="justify-content:center">Client Testimonials</div>
-    <h2 class="sec-title light">What Our <em>Clients Say</em></h2>
-    <div class="divider light" style="margin:20px auto"></div>
-    <p style="color:rgba(255,255,255,.5);font-size:.9rem;line-height:1.8;max-width:600px;margin:0 auto 2rem;font-weight:300">Client testimonials will be featured here shortly. We are proud of the trust our clients place in us and look forward to sharing their stories.</p>
-    <a href="#contact" class="btn btn-white">Be Our Next Success Story</a>
+<!-- TESTIMONIALS -->
+<section class="sec sec-dark2" id="testimonials">
+  <div class="wrap">
+    <div style="text-align:center;max-width:780px;margin:0 auto 2.5rem">
+      <div class="sec-lbl light" style="justify-content:center">Client Testimonials</div>
+      <h2 class="sec-title light">What Our <em>Clients Say</em></h2>
+      <div class="divider light" style="margin:20px auto"></div>
+      <p style="color:rgba(255,255,255,.55);font-size:.9rem;line-height:1.8;font-weight:300">A selection of words from clients we have had the privilege to represent. Names and matters used with permission.</p>
+    </div>
+    <div class="testi-grid">
+      <article class="testi-card">
+        <i class="fas fa-quote-left testi-quote"></i>
+        <p class="testi-body">Shaheel Singh Attorneys Incorporated has been our trusted legal partner for many years. Their assistance across property transactions, trust matters, and commercial legal issues has always been professional and reliable. They take the time to explain complex legal matters in a way that is easy to understand, and their attention to detail gives us complete confidence. I would highly recommend their services to anyone looking for dependable legal support.</p>
+        <div class="testi-meta"><strong>K. Harilal</strong><span>Property Law, Trusts &amp; Commercial Matters</span></div>
+      </article>
+
+      <article class="testi-card">
+        <i class="fas fa-quote-left testi-quote"></i>
+        <p class="testi-body">I approached the firm during a very stressful time when I needed urgent assistance with a harassment matter. The team handled my case with sensitivity and professionalism, guiding me through every step of the process. Their support made a difficult situation much easier to manage, and I am grateful for their dedication and efficiency.</p>
+        <div class="testi-meta"><strong>R. Naidu</strong><span>Harassment Application</span></div>
+      </article>
+
+      <article class="testi-card">
+        <i class="fas fa-quote-left testi-quote"></i>
+        <p class="testi-body">The team at Shaheel Singh Attorneys assisted me with a domestic violence matter at a time when I felt vulnerable and uncertain. They treated me with compassion and respect, while acting quickly to secure the protection I needed. Their professionalism and genuine care made a significant difference in my life.</p>
+        <div class="testi-meta"><strong>J. Naidoo</strong><span>Domestic Violence Matter</span></div>
+      </article>
+
+      <article class="testi-card">
+        <i class="fas fa-quote-left testi-quote"></i>
+        <p class="testi-body">I was arrested and faced a very serious situation that left me extremely worried about my future. Shaheel Singh Attorneys acted quickly to secure my release on bail and represented me throughout the case with professionalism and confidence. Their preparation and dedication ultimately led to my acquittal. I am deeply grateful for their support and would highly recommend them to anyone needing strong legal representation.</p>
+        <div class="testi-meta"><strong>M. Dlamini</strong><span>Criminal Law — Bail &amp; Trial Representation</span></div>
+      </article>
+
+      <article class="testi-card">
+        <i class="fas fa-quote-left testi-quote"></i>
+        <p class="testi-body">After being unfairly dismissed from my job, I approached Shaheel Singh Attorneys for assistance with my matter at the CCMA. They handled my case professionally and ensured that my rights were protected throughout the process. Thanks to their knowledge and persistence, I was able to obtain compensation for my unlawful termination. I truly appreciate their commitment and would not hesitate to recommend their services.</p>
+        <div class="testi-meta"><strong>R. Pillay</strong><span>Labour Law — CCMA Unlawful Termination</span></div>
+      </article>
+
+      <article class="testi-card">
+        <i class="fas fa-quote-left testi-quote"></i>
+        <p class="testi-body">Going through a divorce is never easy, but the team at Shaheel Singh Attorneys made the process far less overwhelming. They provided clear advice, kept me informed throughout, and handled my matter with professionalism and care. I am grateful for their guidance and support during this challenging time.</p>
+        <div class="testi-meta"><strong>S. Maharaj</strong><span>Divorce Matter</span></div>
+      </article>
+
+      <article class="testi-card">
+        <i class="fas fa-quote-left testi-quote"></i>
+        <p class="testi-body">I am very thankful to Shaheel Singh Attorneys for assisting me with my asylum seeker application. They handled my case with patience and professionalism, making sure I understood each step of the process. Their knowledge and dedication gave me confidence throughout the matter.</p>
+        <div class="testi-meta"><strong>T. Girchamo</strong><span>Asylum Seeker Application</span></div>
+      </article>
+
+      <article class="testi-card">
+        <i class="fas fa-quote-left testi-quote"></i>
+        <p class="testi-body">I received excellent assistance from the firm with my vehicle finance matter. They explained my rights clearly and worked diligently to resolve the issue. The service was efficient, professional, and results-driven. I truly appreciated their commitment to achieving the best outcome for me.</p>
+        <div class="testi-meta"><strong>S. Mdlalose</strong><span>Vehicle Finance</span></div>
+      </article>
+
+      <article class="testi-card">
+        <i class="fas fa-quote-left testi-quote"></i>
+        <p class="testi-body">Shaheel Singh Attorneys assisted me with an insurance claim that I was struggling to resolve on my own. Their persistence ensured that my matter was handled efficiently. I appreciated their professionalism, clear communication, and commitment to achieving a positive result.</p>
+        <div class="testi-meta"><strong>D. Chetty</strong><span>Insurance Claim</span></div>
+      </article>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="#contact" class="btn btn-white">Be Our Next Success Story</a>
+    </div>
   </div>
 </section>
 
@@ -1561,7 +1671,7 @@ section[id],div[id]{scroll-margin-top:80px}
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">How can I schedule a consultation?<span class="icon">+</span></button>
-          <div class="faq-a"><p>You can book a consultation by completing the contact form on this page, calling us directly on +27 63 685 5702, sending us a WhatsApp message, or emailing us at <a href="mailto:info@ssinghlaw.co.za">info@ssinghlaw.co.za</a>. We will respond promptly to arrange a convenient time.</p></div>
+          <div class="faq-a"><p>You can book a consultation by completing the contact form on this page, calling us directly on +27 60 929 0199, sending us a WhatsApp message, or emailing us at <a href="mailto:info@ssinghlaw.co.za">info@ssinghlaw.co.za</a>. We will respond promptly to arrange a convenient time.</p></div>
         </div>
 
         <div class="faq-item">
@@ -1601,8 +1711,8 @@ section[id],div[id]{scroll-margin-top:80px}
     <div class="contact-grid">
       <div>
         <div class="c-blocks">
-          <div class="c-block"><div class="c-block-ic"><i class="fas fa-phone"></i></div><div><h4>Phone</h4><a href="tel:+27636855702">+27 63 685 5702</a></div></div>
-          <div class="c-block"><div class="c-block-ic"><i class="fab fa-whatsapp"></i></div><div><h4>WhatsApp</h4><a href="https://wa.me/27636855702" target="_blank">+27 63 685 5702</a></div></div>
+          <div class="c-block"><div class="c-block-ic"><i class="fas fa-phone"></i></div><div><h4>Phone</h4><a href="tel:+27609290199">+27 60 929 0199</a></div></div>
+          <div class="c-block"><div class="c-block-ic"><i class="fab fa-whatsapp"></i></div><div><h4>WhatsApp</h4><a href="https://wa.me/27609290199" target="_blank">+27 60 929 0199</a></div></div>
           <div class="c-block"><div class="c-block-ic"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><a href="mailto:info@ssinghlaw.co.za">info@ssinghlaw.co.za</a></div></div>
           <div class="c-block"><div class="c-block-ic"><i class="fas fa-map-marker-alt"></i></div><div><h4>Pietermaritzburg Office</h4><p>18 Montrose Park Blvd, 170 Peter Brown Drive<br>Victoria Country Club Estate, Pietermaritzburg</p></div></div>
           <div class="c-block"><div class="c-block-ic"><i class="fas fa-map-marker-alt"></i></div><div><h4>Sandton Office</h4><p>377 Rivonia Boulevard, Rivonia<br>Johannesburg, 2128</p></div></div>
@@ -1613,7 +1723,7 @@ section[id],div[id]{scroll-margin-top:80px}
           <div style="display:flex;gap:10px">
             <a href="https://www.facebook.com/shaheel3/" target="_blank" class="soc"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/shaheel_singh/" target="_blank" class="soc"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/27636855702" target="_blank" class="soc"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/27609290199" target="_blank" class="soc"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
       </div>
@@ -1675,7 +1785,7 @@ section[id],div[id]{scroll-margin-top:80px}
       <div class="socials">
         <a href="https://www.facebook.com/shaheel3/" target="_blank" class="soc"><i class="fab fa-facebook-f"></i></a>
         <a href="https://www.instagram.com/shaheel_singh/" target="_blank" class="soc"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/27636855702" target="_blank" class="soc"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/27609290199" target="_blank" class="soc"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
     <div class="footer-col">
@@ -1709,8 +1819,8 @@ section[id],div[id]{scroll-margin-top:80px}
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <div class="fci"><i class="fas fa-phone"></i><a href="tel:+27636855702">+27 63 685 5702</a></div>
-      <div class="fci"><i class="fab fa-whatsapp"></i><a href="https://wa.me/27636855702" target="_blank">+27 63 685 5702 (WhatsApp)</a></div>
+      <div class="fci"><i class="fas fa-phone"></i><a href="tel:+27609290199">+27 60 929 0199</a></div>
+      <div class="fci"><i class="fab fa-whatsapp"></i><a href="https://wa.me/27609290199" target="_blank">+27 60 929 0199 (WhatsApp)</a></div>
       <div class="fci"><i class="fas fa-envelope"></i><a href="mailto:info@ssinghlaw.co.za">info@ssinghlaw.co.za</a></div>
       <div class="fci"><i class="fas fa-map-marker-alt"></i><span>KwaZulu-Natal &amp; Johannesburg</span></div>
       <div class="fci"><i class="fas fa-clock"></i><span>Mon–Fri: 08:00–17:00</span></div>
@@ -1723,7 +1833,7 @@ section[id],div[id]{scroll-margin-top:80px}
   </div>
 </footer>
 
-<a href="https://wa.me/27636855702" target="_blank" class="float-wa" title="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/27609290199" target="_blank" class="float-wa" title="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
 <script>
 /* ════════════════════════
