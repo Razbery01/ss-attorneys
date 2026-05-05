@@ -271,24 +271,24 @@ body{
   background-color: rgba(255,255,255,0.35);
 }
 
-/* Service detail rows: alternating — clean white on odd, visible marble on every 2nd (.alt) */
+/* Service detail rows: alternating — clean white on odd, real marble on every 2nd (.alt) */
 .svc-detail{
   position:relative;
   background-color: #ffffff;
 }
 .svc-detail.alt{
   position:relative;
-  background-color: #f6f5f3;
-  background-image: var(--stone-texture);
-  background-size: 1600px 1600px;
+  background-image: url("images/marble-bg.jpg");
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  background-color: #f6f5f3;
 }
 .svc-detail.alt::after{
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(255,255,255,0.30);
+  background: rgba(255,255,255,0.55);
   pointer-events:none;
   z-index:0;
 }
