@@ -284,12 +284,12 @@ body{
   background-repeat: no-repeat;
   background-color: #f6f5f3;
 }
-/* Light overlay only — marble veining must remain clearly visible */
+/* No overlay — marble shows directly so veining is fully visible */
 .svc-detail.alt::after{
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(255,255,255,0.15);
+  background: transparent;
   pointer-events:none;
   z-index:0;
 }
@@ -506,7 +506,7 @@ a{text-decoration:none;color:inherit}
 
 /* ── SERVICE DETAIL ── */
 .svc-detail{padding:70px 0;border-bottom:1px solid var(--border)}
-.svc-detail.alt{background:var(--off-white)}
+/* .svc-detail.alt background is defined above (marble texture) — do not override here */
 .svc-detail-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;display:grid;grid-template-columns:380px 1fr;gap:60px;align-items:start}
 .svc-detail.alt .svc-detail-inner{grid-template-columns:1fr 380px}
 .svc-detail-img{width:100%;height:300px;object-fit:cover;filter:grayscale(30%)}
@@ -713,7 +713,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.08)}
 
 /* ── SERVICE DETAIL ── */
 .svc-detail{padding:70px 0;border-bottom:1px solid var(--border)}
-.svc-detail.alt{background:var(--off-white)}
+/* .svc-detail.alt background is defined above (marble texture) — do not override here */
 .svc-detail-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;display:grid;grid-template-columns:380px 1fr;gap:60px;align-items:start}
 .svc-detail.alt .svc-detail-inner{grid-template-columns:1fr 380px}
 .svc-detail-img{width:100%;height:300px;object-fit:cover;filter:grayscale(30%)}
