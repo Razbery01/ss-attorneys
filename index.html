@@ -284,11 +284,12 @@ body{
   background-repeat: no-repeat;
   background-color: #f6f5f3;
 }
+/* Light overlay only — marble veining must remain clearly visible */
 .svc-detail.alt::after{
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.15);
   pointer-events:none;
   z-index:0;
 }
